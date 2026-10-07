@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10141d">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="description" content="Проверяйте файлы локализации модов Clausewitz локально: BOM, ключи, дубликаты, пропуски и игровые токены.">
+  <title>ModLocale — локальная проверка переводов</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%237c83ff'/%3E%3Cpath d='M11 13h18M11 20h13M11 27h8' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="ModLocale, главная">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>mod<span class="brand-accent">locale</span></span>
+      </a>
+      <nav class="top-links" aria-label="Основная навигация">
+        <a href="#how">Как это работает</a>
+        <a href="#privacy">Конфиденциальность</a>
+      </nav>
+      <button class="button button-quiet language-toggle" id="language-toggle" type="button" aria-label="Switch language">EN</button>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="status-dot"></span><span data-i18n="eyebrow">БЕСПЛАТНО · РАБОТАЕТ ЛОКАЛЬНО · БЕЗ РЕГИСТРАЦИИ</span></div>
+          <h1 data-i18n="heroTitle">Перевод готов.<br><span>Файл тоже?</span></h1>
+          <p data-i18n="heroText">Найдите пропущенные ключи, неверный BOM и потерянные игровые переменные до запуска мода. Ваши файлы остаются на этом устройстве.</p>
+          <div class="hero-points">
+            <span><b>✓</b><span data-i18n="pointOne">Проверка за секунды</span></span>
+            <span><b>✓</b><span data-i18n="pointTwo">Никаких API и отправки файлов</span></span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orb orb-one"></div><div class="orb orb-two"></div>
+          <div class="art-card">
+            <div class="art-top"><span class="traffic"><i></i><i></i><i></i></span><span>localisation_l_russian.yml</span><span class="art-check">✓</span></div>
+            <div class="code-line"><small>01</small><span class="code-muted">l_russian:</span></div>
+            <div class="code-line"><small>02</small><span class="code-key">RD43_focus_winter</span><span class="code-colon">:0</span><span class="code-text"> "Зимняя кампания"</span></div>
+            <div class="code-line"><small>03</small><span class="code-key">RD43_event_supply</span><span class="code-colon">:0</span><span class="code-text"> "Восстановить снабжение"</span></div>
+            <div class="code-line code-warning"><small>04</small><span class="code-key">RD43_event_result</span><span class="code-colon">:0</span><span class="code-text"> "Потерян токен §Y"</span><span class="warning-tag">токен</span></div>
+            <div class="art-footer"><span><i class="mini-dot"></i> 1 проблема найдена</span><span>UTF-8 BOM ✓</span></div>
+          </div>
+          <div class="float-chip chip-left"><span class="chip-icon">⌕</span><span data-i18n="chipDuplicate">Повторяющиеся ключи</span></div>
+          <div class="float-chip chip-right"><span class="chip-icon chip-green">✓</span><span data-i18n="chipSafe">Локально и безопасно</span></div>
+        </div>
+      </section>
+
+      <section class="workspace" aria-labelledby="workspace-title">
+        <div class="section-heading">
+          <div><div class="eyebrow eyebrow-light" data-i18n="stepLabel">ПРОВЕРКА ФАЙЛОВ</div><h2 id="workspace-title" data-i18n="workspaceTitle">Сравните два языка</h2></div>
+          <button class="text-button" id="demo-button" type="button"><span aria-hidden="true">✦</span> <span data-i18n="demoButton">Загрузить пример</span></button>
+        </div>
+
+        <div class="upload-grid">
+          <article class="upload-card" id="base-card">
+            <div class="upload-title"><span class="step-number">01</span><div><h3 data-i18n="baseTitle">Исходный язык</h3><p data-i18n="baseHint">Например, английский файл</p></div></div>
+            <label class="dropzone" id="base-drop" for="base-file">
+              <span class="upload-icon" aria-hidden="true">↑</span><strong data-i18n="dropText">Перетащите файл сюда</strong><span data-i18n="orBrowse">или <u>выберите на устройстве</u></span>
+              <small>.yml · .yaml · UTF-8</small>
+              <input id="base-file" type="file" accept=".yml,.yaml,text/yaml,text/plain" hidden>
+            </label>
+            <div class="file-meta" id="base-meta" aria-live="polite"><span class="file-empty" data-i18n="noFile">Файл не выбран</span></div>
+          </article>
+          <article class="upload-card" id="target-card">
+            <div class="upload-title"><span class="step-number step-purple">02</span><div><h3 data-i18n="targetTitle">Перевод</h3><p data-i18n="targetHint">Файл, который нужно проверить</p></div></div>
+            <label class="dropzone dropzone-purple" id="target-drop" for="target-file">
+              <span class="upload-icon upload-icon-purple" aria-hidden="true">↑</span><strong data-i18n="dropText">Перетащите файл сюда</strong><span data-i18n="orBrowse">или <u>выберите на устройстве</u></span>
+              <small>.yml · .yaml · UTF-8</small>
+              <input id="target-file" type="file" accept=".yml,.yaml,text/yaml,text/plain" hidden>
+            </label>
+            <div class="file-meta" id="target-meta" aria-live="polite"><span class="file-empty" data-i18n="noFile">Файл не выбран</span></div>
+          </article>
+        </div>
+
+        <div class="action-row">
+          <div class="option-group"><label for="target-language" data-i18n="targetLangLabel">Язык перевода</label><select id="target-language"><option value="russian">Русский — l_russian</option><option value="english">English — l_english</option><option value="french">Français — l_french</option><option value="german">Deutsch — l_german</option><option value="spanish">Español — l_spanish</option><option value="polish">Polski — l_polish</option><option value="braz_por">Português (Brasil) — l_braz_por</option><option value="japanese">日本語 — l_japanese</option><option value="simp_chinese">简体中文 — l_simp_chinese</option><option value="custom">Другой язык…</option></select><input id="custom-language" class="custom-language" type="text" maxlength="40" placeholder="например, korean" hidden></div>
+          <button class="button button-primary" id="analyze-button" type="button" disabled><span data-i18n="analyzeButton">Проверить локализацию</span><span aria-hidden="true">→</span></button>
+        </div>
+
+        <div class="error-message" id="error-message" role="alert" hidden></div>
+        <section class="results" id="results" aria-live="polite" hidden>
+          <div class="results-head"><div><div class="eyebrow eyebrow-light" data-i18n="reportLabel">ОТЧЁТ</div><h2 data-i18n="reportTitle">Результаты проверки</h2></div><div class="report-actions"><button class="button button-secondary" id="export-report" type="button" data-i18n="exportReport">Скачать отчёт</button><button class="button button-primary" id="export-missing" type="button" data-i18n="exportMissing">Скачать файл с пропусками</button></div></div>
+          <div class="score-strip" id="score-strip"></div>
+          <div class="tabs" role="tablist" aria-label="Проблемы локализации">
+            <button class="tab active" type="button" role="tab" aria-selected="true" data-tab="all" data-i18n="tabAll">Все <span id="count-all">0</span></button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-tab="missing" data-i18n="tabMissing">Пропущено <span id="count-missing">0</span></button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-tab="tokens" data-i18n="tabTokens">Токены <span id="count-tokens">0</span></button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-tab="format" data-i18n="tabFormat">Формат <span id="count-format">0</span></button>
+          </div>
+          <div class="issue-list" id="issue-list"></div>
+          <div class="empty-results" id="empty-results" hidden><span>✓</span><strong data-i18n="cleanTitle">Всё чисто</strong><p data-i18n="cleanText">Ошибок в выбранных проверках не найдено.</p></div>
+        </section>
+      </section>
+
+      <section class="how" id="how">
+        <div class="how-heading"><div class="eyebrow eyebrow-light" data-i18n="howLabel">ПОНЯТНО С ПЕРВОГО РАЗА</div><h2 data-i18n="howTitle">Три проверки.<br><span>Меньше сюрпризов в игре.</span></h2></div>
+        <div class="feature-grid">
+          <article class="feature"><div class="feature-icon icon-purple">01</div><h3 data-i18n="featureOneTitle">Покрытие ключей</h3><p data-i18n="featureOneText">Сравните перевод с оригиналом и найдите строки, которых не хватает или которые уже не используются.</p></article>
+          <article class="feature"><div class="feature-icon icon-blue">02</div><h3 data-i18n="featureTwoTitle">Переменные и формат</h3><p data-i18n="featureTwoText">Узнайте, если в переводе потерялись $TOKEN$, §Y, значок £ или другой игровой маркер.</p></article>
+          <article class="feature"><div class="feature-icon icon-green">03</div><h3 data-i18n="featureThreeTitle">Кодировка и дубли</h3><p data-i18n="featureThreeText">Проверьте UTF-8 BOM, языковой заголовок, имя файла и повторяющиеся ключи.</p></article>
+        </div>
+      </section>
+
+      <section class="privacy" id="privacy"><div class="privacy-icon">⌑</div><div><h2 data-i18n="privacyTitle">Файлы не покидают устройство</h2><p data-i18n="privacyText">Проверка выполняется прямо в браузере. Нет аккаунта, аналитики, API или загрузки на сервер. Скачивание исправленного файла начинается только по твоему нажатию.</p></div><span class="privacy-badge"><i></i><span data-i18n="privacyBadge">ЛОКАЛЬНАЯ ОБРАБОТКА</span></span></section>
+    </main>
+    <footer><a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>mod<span class="brand-accent">locale</span></span></a><span data-i18n="footerText">Создано для авторов модификаций · Открытый код · Бесплатно</span><a href="https://github.com/GhosTnever-lkm/clausewitz-loc-guard" target="_blank" rel="noreferrer">GitHub ↗</a></footer>
+  </div>
+</body>
+</html>
