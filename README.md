@@ -22,7 +22,7 @@ flowchart LR
 
 To use your own files:
 
-1. Open the demo or download the repository from **Code → Download ZIP** and open `index.html` in a modern browser.
+1. Open the live demo, or download the repository from **Code → Download ZIP**. For a local copy, start a static HTTP server in the extracted project folder (see [Run locally](#run-locally)) and open the local address. This avoids browser restrictions on loading JavaScript modules from `file://`.
 2. Choose the source localisation file and the translation file.
 3. Select the translation language and click **Check localisation**.
 4. Review the findings. If needed, download a text report or a target-language file scaffold for missing source strings.

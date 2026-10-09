@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1 - 2026-10-10
+
+- Clarify that local copies must run through an HTTP server because the browser module is blocked from `file://` pages.
+
 ## 1.0.0 - 2026-10-09
 
 - Detect the Clausewitz `§!` formatting reset token alongside other game markers.
