@@ -1,0 +1,13 @@
+{
+  "name": "modlocale",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local-first Clausewitz localisation checker",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}
