@@ -61,7 +61,7 @@
         <div class="upload-grid">
           <article class="upload-card" id="base-card">
             <div class="upload-title"><span class="step-number">01</span><div><h3 data-i18n="baseTitle">Исходный язык</h3><p data-i18n="baseHint">Например, английский файл</p></div></div>
-            <label class="dropzone" id="base-drop" for="base-file">
+            <label class="dropzone" id="base-drop" for="base-file" role="button" tabindex="0">
               <span class="upload-icon" aria-hidden="true">↑</span><strong data-i18n="dropText">Перетащите файл сюда</strong><span data-i18n="orBrowse">или <u>выберите на устройстве</u></span>
               <small>.yml · .yaml · UTF-8</small>
               <input id="base-file" type="file" accept=".yml,.yaml,text/yaml,text/plain" hidden>
@@ -70,7 +70,7 @@
           </article>
           <article class="upload-card" id="target-card">
             <div class="upload-title"><span class="step-number step-purple">02</span><div><h3 data-i18n="targetTitle">Перевод</h3><p data-i18n="targetHint">Файл, который нужно проверить</p></div></div>
-            <label class="dropzone dropzone-purple" id="target-drop" for="target-file">
+            <label class="dropzone dropzone-purple" id="target-drop" for="target-file" role="button" tabindex="0">
               <span class="upload-icon upload-icon-purple" aria-hidden="true">↑</span><strong data-i18n="dropText">Перетащите файл сюда</strong><span data-i18n="orBrowse">или <u>выберите на устройстве</u></span>
               <small>.yml · .yaml · UTF-8</small>
               <input id="target-file" type="file" accept=".yml,.yaml,text/yaml,text/plain" hidden>

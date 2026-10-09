@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.2 - 2026-10-10
+
+- Make both localisation file drop zones keyboard-focusable and open the file picker with Enter or Space.
+- Add a visible keyboard focus indicator.
+
 ## 1.0.1 - 2026-10-10
 
 - Clarify that local copies must run through an HTTP server because the browser module is blocked from `file://` pages.

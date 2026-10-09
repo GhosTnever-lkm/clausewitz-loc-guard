@@ -37,7 +37,7 @@ For an example, click **Load example** or add `?demo` to the URL.
 - UTF-8 BOM, language header, and conventional `_l_<language>.yml` or `.yaml` filename suffix.
 - A downloadable plain-text report and a target-language scaffold for missing keys.
 
-The interface is available in Russian and English, with common Paradox language codes and a custom-language option.
+The interface is available in Russian and English, with common Paradox language codes and a custom-language option. File drop zones support keyboard access with Enter or Space.
 
 ## Supported format and limits
 

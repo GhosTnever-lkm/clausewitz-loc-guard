@@ -132,6 +132,12 @@
     updateAnalyzeAvailability()
   }
   function addDropHandlers(drop, which) {
+    drop.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return
+      event.preventDefault()
+      const input = which === 'base' ? ui.baseInput : ui.targetInput
+      input.click()
+    })
     for (const eventName of ['dragenter', 'dragover']) drop.addEventListener(eventName, (event) => { event.preventDefault(); drop.classList.add('dragover') })
     for (const eventName of ['dragleave', 'drop']) drop.addEventListener(eventName, (event) => { event.preventDefault(); drop.classList.remove('dragover') })
     drop.addEventListener('drop', (event) => setFile(which, event.dataTransfer?.files?.[0]))
