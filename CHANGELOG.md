@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3 - 2026-10-13
+
+- Preserve and compare complete printf placeholders, including width, precision, length, and positional argument markers.
+
 ## 1.0.2 - 2026-10-10
 
 - Make both localisation file drop zones keyboard-focusable and open the file picker with Enter or Space.

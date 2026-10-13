@@ -7,7 +7,7 @@
       /§[A-Za-z0-9!]/g,
       /£[A-Za-z0-9_]+/g,
       /\[[A-Za-z0-9_.:-]+\]/g,
-      /%%|%[1-9$sdiuf]/g,
+      /%(?:%|(?:(?:\d+\$)?[-+#0 ]*(?:\d+|\*)?(?:\.(?:\d+|\*))?(?:hh|h|ll|l|z|j|t|L)?[diuoxXfFeEgGaAcsp]))/g,
       /\\[nrt"\\]/g,
     ]
     const tokens = []
