@@ -33,7 +33,7 @@ For an example, click **Load example** or add `?demo` to the URL.
 
 - Keys missing from the translation and translation-only keys that may be outdated.
 - Duplicate keys and lines outside the supported entry syntax.
-- Differences in `$VARIABLE$`, Clausewitz formatting markers such as `§Y` and the `§!` reset, `£icon`, bracketed placeholders, common printf markers, and escaped control characters.
+- Differences in `$VARIABLE$`, Clausewitz formatting markers such as `§Y` and the `§!` reset, `£icon`, bracketed placeholders, printf markers (including width and positional arguments), and escaped control characters.
 - UTF-8 BOM, language header, and conventional `_l_<language>.yml` or `.yaml` filename suffix.
 - A downloadable plain-text report and a target-language scaffold for missing keys.
 

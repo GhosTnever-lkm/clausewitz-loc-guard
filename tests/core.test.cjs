@@ -14,6 +14,10 @@ test('recognises Clausewitz colour reset marker §!', () => {
   assert.deepEqual(core.extractTokens('§YWarning§!'), ['§!', '§Y'])
 })
 
+test('recognises complete printf placeholders with width and positional arguments', () => {
+  assert.deepEqual(core.extractTokens('%02d %1$s %% %s %04X'), ['%%', '%02d', '%04X', '%1$s', '%s'])
+})
+
 test('reports missing keys and token mismatches', () => {
   const base = { file: { name: 'base_l_english.yml' }, hasBom: true, parsed: core.parseLoc('l_english:\nA:0 "$NAME$ §Ytext§!"\nB:0 "unused"') }
   const target = { file: { name: 'target_l_french.yml' }, hasBom: true, parsed: core.parseLoc('l_french:\nA:0 "$NAME$ §Ytexte"') }
@@ -22,6 +26,13 @@ test('reports missing keys and token mismatches', () => {
   assert.equal(report.targetCount, 1)
   assert.ok(report.issues.some((issue) => issue.code === 'tokens' && issue.key === 'A'))
   assert.ok(report.issues.some((issue) => issue.code === 'missing' && issue.key === 'B'))
+})
+
+test('reports printf width and conversion changes in translated strings', () => {
+  const base = { file: { name: 'base_l_english.yml' }, hasBom: true, parsed: core.parseLoc('l_english:\nA:0 "Score: %02d / %1$s"') }
+  const target = { file: { name: 'target_l_french.yml' }, hasBom: true, parsed: core.parseLoc('l_french:\nA:0 "Score : %d / %1$d"') }
+  const report = core.analyzeFiles(base, target, 'french')
+  assert.ok(report.issues.some((issue) => issue.code === 'tokens' && issue.key === 'A'))
 })
 
 test('treats regex metacharacters in selected language as literal filename text', () => {
