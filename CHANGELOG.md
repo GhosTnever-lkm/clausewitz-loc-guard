@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Reject release tags that do not match both `VERSION` and `package.json`.
+- Pin release workflow actions to the same verified immutable revisions as CI and scope release write access to its publishing job.
+
 ## 1.0.3 - 2026-10-13
 
 - Preserve and compare complete printf placeholders, including width, precision, length, and positional argument markers.
